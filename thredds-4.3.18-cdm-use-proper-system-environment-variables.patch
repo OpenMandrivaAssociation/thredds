@@ -1,0 +1,86 @@
+diff -Nru thredds-4.3.18/cdm/src/main/java/thredds/inventory/bdb/MetadataManager.java thredds-4.3.18-gil/cdm/src/main/java/thredds/inventory/bdb/MetadataManager.java
+--- thredds-4.3.18/cdm/src/main/java/thredds/inventory/bdb/MetadataManager.java	2013-09-16 02:10:48.000000000 +0200
++++ thredds-4.3.18-gil/cdm/src/main/java/thredds/inventory/bdb/MetadataManager.java	2013-09-17 21:04:34.062342674 +0200
+@@ -68,10 +68,10 @@
+   //private static boolean debugDelete = false;
+ 
+   static {
+-    String home = System.getProperty("user.home");
++    String home = System.getenv("user.home");
+ 
+     if (home == null)
+-      home = System.getProperty("user.dir");
++      home = System.getProperty("user.home");
+ 
+     if (home == null)
+       home = ".";
+diff -Nru thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/DiskCache2.java thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/DiskCache2.java
+--- thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/DiskCache2.java	2013-09-16 02:10:48.000000000 +0200
++++ thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/DiskCache2.java	2013-09-17 21:06:09.203383664 +0200
+@@ -86,10 +86,10 @@
+     String root = System.getProperty("nj22.cache");
+ 
+     if (root == null) {
+-      String home = System.getProperty("user.home");
++      String home = System.getenv("user.home");
+ 
+       if (home == null)
+-        home = System.getProperty("user.dir");
++        home = System.getProperty("user.home");
+ 
+       if (home == null)
+         home = ".";
+diff -Nru thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/DiskCache.java thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/DiskCache.java
+--- thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/DiskCache.java	2013-09-16 02:10:48.000000000 +0200
++++ thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/DiskCache.java	2013-09-17 21:05:33.610234279 +0200
+@@ -102,10 +102,10 @@
+     root = System.getProperty("nj22.cache");
+ 
+     if (root == null) {
+-      String home = System.getProperty("user.home");
++      String home = System.getenv("user.home");
+ 
+       if (home == null)
+-        home = System.getProperty("user.dir");
++        home = System.getProperty("user.home");
+ 
+       if (home == null)
+         home = ".";
+diff -Nru thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/Misc.java thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/Misc.java
+--- thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/Misc.java	2013-09-16 02:10:48.000000000 +0200
++++ thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/Misc.java	2013-09-17 21:08:27.485190713 +0200
+@@ -210,7 +210,7 @@
+       testdataDirPath = System.getProperty(testdataDirPropName);  // Check for system property
+ 
+     if (testdataDirPath == null) {
+-      File userHomeDirFile = new File(System.getProperty("user.home"));
++      File userHomeDirFile = new File(System.getenv("user.home"));
+       File userThreddsPropsFile = new File(userHomeDirFile, threddsPropFileName);
+       if (userThreddsPropsFile.exists() && userThreddsPropsFile.canRead()) {
+         Properties userThreddsProps = new Properties();
+diff -Nru thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/rc/RC.java thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/rc/RC.java
+--- thredds-4.3.18/cdm/src/main/java/ucar/nc2/util/rc/RC.java	2013-09-16 02:10:48.000000000 +0200
++++ thredds-4.3.18-gil/cdm/src/main/java/ucar/nc2/util/rc/RC.java	2013-09-17 21:07:15.653927753 +0200
+@@ -277,8 +277,8 @@
+ {
+     RC rc0 = new RC();
+     String[] locations = new String[] {
+-    	System.getProperty("user.home"),
+-            System.getProperty("user.dir"),
++    	System.getenv("user.home"),
++            System.getProperty("user.home"),
+         };
+ 
+     boolean found1 = false;
+diff -Nru thredds-4.3.18/cdm/src/main/java/ucar/util/prefs/XMLStore.java thredds-4.3.18-gil/cdm/src/main/java/ucar/util/prefs/XMLStore.java
+--- thredds-4.3.18/cdm/src/main/java/ucar/util/prefs/XMLStore.java	2013-09-16 02:10:48.000000000 +0200
++++ thredds-4.3.18-gil/cdm/src/main/java/ucar/util/prefs/XMLStore.java	2013-09-17 21:13:32.603302912 +0200
+@@ -325,7 +325,7 @@
+       // the directory
+     String userHome = null;
+     try {
+-      userHome = System.getProperty("user.home");
++      userHome = System.getenv("user.home");
+     } catch (Exception e) {
+       System.out.println( "XMLStore.makeStandardFilename: error System.getProperty(user.home) "+e);
+     }
