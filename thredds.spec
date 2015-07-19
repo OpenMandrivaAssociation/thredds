@@ -1,7 +1,7 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:          thredds
 Version:       4.3.19
-Release:       5.1
+Release:       5.2
 Summary:       Thematic Realtime Environmental Distributed Data Services (TDS)
 Group:         Development/Java
 # GPLv3: opendap/src/main/java/opendap/dap/parsers/DapParser.java
