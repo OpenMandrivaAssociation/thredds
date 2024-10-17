@@ -10,7 +10,7 @@ Group:         Development/Java
 #         grib/src/main/java/ucar/jpeg
 # ASL: tds/src/main/java/thredds/servlet/URLEncoder.java
 License:       ASL 2.0 and BSD
-URL:           http://www.unidata.ucar.edu/software/tds/
+URL:           https://www.unidata.ucar.edu/software/tds/
 # sh thredds-create-tarball.sh < VERSION >
 Source0:       %{name}-%{version}-clean.tar.xz
 Source1:       %{name}-create-tarball.sh
